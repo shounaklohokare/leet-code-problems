@@ -1,4 +1,13 @@
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
         
-        return [(i, j) for i in range(len(nums)) for j in range(len(nums)) if nums[i]+nums[j]==target and i<j][0]
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1; j<nums.length; j++){
+                if(nums[i]+nums[j]==target) return new int[] {i, j};
+            }
+        }
+        
+        return null;
+        
+    }
+}
