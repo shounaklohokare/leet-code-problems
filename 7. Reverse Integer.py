@@ -1,14 +1,20 @@
-class Solution:
-    def reverse(self, x: int) -> int:
-        
-        rev = str(abs(x))[::-1]
-        
-        rev = int(rev)
-        
-        if rev > 2**31-1 or rev < -2 ** 31-1:
-            return 0
-        
-        if x < 0:
-            return -1 * rev
-        
-        return rev
+class Solution {
+   public int reverse(int x) {
+        long k = x;
+        boolean isNegtive = false;        
+        if(k < 0){
+            k = 0 - k;
+            isNegtive = true;
+        }
+
+        long result = 0;
+        while(k != 0){
+            result *= 10;
+            result += k % 10;
+            k /= 10;
+        }
+
+        if(result > Integer.MAX_VALUE) return 0;
+        return isNegtive  ? 0 - ((int)result) : (int)result;
+    }
+}
