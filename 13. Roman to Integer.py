@@ -1,20 +1,29 @@
-class Solution:
-    def romanToInt(self, s: str) -> int:
+class Solution {
+    public int romanToInt(String s) {
+      
+        Map<Character, Integer> mp = new HashMap<>();
         
-        if not s: return
+        mp.put('I',1);
+        mp.put('V',5);
+        mp.put('X',10);
+        mp.put('L',50);
+        mp.put('C',100);
+        mp.put('D',500);
+        mp.put('M',1000);
         
-        dic = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+        int current=0; int prev=0;
+        int n = s.length()-1;
         
-        
-        n = len(s)
-        total = dic[s[n-1]]
-        
-        for i in range(n-1, 0, -1):
+        int ans=mp.get(s.charAt(n));
+        for(int i=n; i>0; i--){
             
-            current = dic[s[i]]
-            prev = dic[s[i-1]]
+            prev = mp.get(s.charAt(i-1));
+            current = mp.get(s.charAt(i));
             
-            total+=prev if prev>=current  else -prev
-            
-        return total
+            if(prev>=current) ans+=prev;
+            else ans-=prev;
+        }return ans;
         
+        
+    }
+}
