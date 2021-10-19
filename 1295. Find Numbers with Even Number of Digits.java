@@ -4,11 +4,14 @@ class Solution {
         int ans=0;
         for(int ele : nums){
             
-            String str = Integer.toString(ele);
+            int cnt=0;
             
-            if(str.length()%2==0) ans++;
+            while(ele > 0){
+                cnt++;
+                ele/=10;
+            }
             
-            
+            if(cnt%2==0)ans++;
         }
         
         return ans;
