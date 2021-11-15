@@ -16,11 +16,11 @@ class Solution {
                     }   
                 }
                 
-                if(i==1){
+                if(i==1){    // if i==1 we are iterating columns in indices
                     
                     int rj = row[i];
                     
-                    for(int j=0; j<m; j++){
+                    for(int j=0; j<m; j++){ // by m we are just iterating columns in arr
                         arr[j][rj]+=1;
                     }
                 }
