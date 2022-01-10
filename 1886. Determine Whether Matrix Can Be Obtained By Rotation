@@ -20,7 +20,7 @@ class Solution {
             mat[j] = tmp;
         }
         
-        for(int r=0, R=mat.length; r<R; r++){ // transpose a matrix
+        for(int r=0, R=mat.length; r<R; r++){ // transpose the matrix
             for(int c=r+1; c<R; c++){
                 int temp = mat[r][c];
                 mat[r][c] = mat[c][r];
