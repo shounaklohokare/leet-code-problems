@@ -19,8 +19,8 @@ class Solution {
             {
                 if(matrix[i][j]==0)        // if any of those cells is zero 
                 {
-                    matrix[i][0]=0;       // assign zero to its neighboring north and west cells 
-                    matrix[0][j]=0;
+                    matrix[i][0]=0;       // assign zero to first element of that row
+                    matrix[0][j]=0;       // and assign zero to first element of that column
                 }
             }
         }
