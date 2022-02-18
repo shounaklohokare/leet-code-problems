@@ -33,11 +33,13 @@ class Solution {
             if(mid < hi && nums[mid] > nums[mid+1]){
                 // if the element at the previous index is greater than the element at the following index
                 // then element at the previous index is the pivot
+                // we check if mid < hi to avoid IndexOutOfBound error
                 return mid;
             }
             
             if(lo < mid && nums[mid-1] > nums[mid]){ 
                 // similar condition as that of the above one
+                // we check if lo < mid to avoid IndexOutOfBound error
                 return mid-1;
             }
             
