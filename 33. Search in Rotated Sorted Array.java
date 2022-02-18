@@ -1,20 +1,23 @@
 class Solution {
-    // a rotated sorted array basically contains two arrays which are sorted in the ascending order, the trick is to find the pivot 
     public int search(int[] nums, int target) {
         
+        // given array nums is possibly rotated
+        // a rotated array consists of two sub arrays
+        // both are sorted in ascending array
+        // the element at which one sorted array ends 
+        // and the index following which another sorted array begins
+        // is called a pivot element
+        // pivot element is the maximum element in the array
+        // finding the pivot element is the pivotal point in searching an element in a rotated sorted array  
         int pivot = findPivot(nums);
         
-        if(pivot==-1) return binarySearch(nums, target, 0, nums.length-1); // if pivot equals -1 then array is not rotated
+        if(pivot==-1) return binarySearch(nums, 0, nums.length-1, target);
         
-        if(nums[pivot]==target) return pivot;  
+        if(nums[pivot]==target) return pivot;
         
-        if(nums[0] <= target) return binarySearch(nums, target, 0, pivot-1); // if 0th element is less than or equal to target then the target element is in the first ascending array
-
+        if(nums[0] <= target) return binarySearch(nums, 0, pivot-1, target);
         
-        return binarySearch(nums, target, pivot+1, nums.length-1); // else the target is in second ascending array
-
-        
-        
+        return binarySearch(nums, pivot+1, nums.length-1, target);
         
     }
     
@@ -27,35 +30,53 @@ class Solution {
             
             int mid = lo + (hi-lo) / 2;
             
-            if(mid < hi && nums[mid] > nums[mid+1]) return mid;  // if (mid)th element > (mid+1)th, then mid is pivot as the previous element can't be greater than following element in sorted array
-             
-            if(lo < mid && nums[mid-1] > nums[mid]) return mid-1; // similarly if mid - 1 is greater than mid then mid -1 is the pivot
+            if(mid < hi && nums[mid] > nums[mid+1]){
+                // if the element at the previous index is greater than the element at the following index
+                // then element at the previous index is the pivot
+                return mid;
+            }
             
-            if(nums[lo] < nums[mid]) lo = mid+1; // if element is lo less than element at mid then target is at following part of array thus we initialise lo to mid+1
+            if(lo < mid && nums[mid-1] > nums[mid]){ 
+                // similar condition as that of the above one
+                return mid-1;
+            }
             
-            else hi = mid-1; // else target is at prev part so we initialise hi to mid-1
+            if(nums[lo] < nums[mid]){
+                // if element at lo is less than that of the element at the mid
+                // then the pivot element is in the right hand side of the array
+                lo = mid+1;
+                // thus we initialise lo to mid+1
+            }
+            
+            else{
+                // if element at mid is greater than that of the element at hi
+                // then the element is at the right hand side of the array 
+                hi = mid-1;
+                // thus we initialise hi to mid-1
+            }
+            
             
         }
-        
         return -1;
-        
         
     }
     
-    int binarySearch(int[] nums, int target, int lo, int hi){
-        
+    int binarySearch(int[] nums, int lo, int hi, int target){
+        // this is normal binary search w the exception that
+        // we pass lo and hi as parameters 
         while(lo<=hi){
             
             int mid = lo + (hi-lo) / 2;
             
             if(nums[mid] == target) return mid;
             
-            if(nums[mid] < target)  lo = mid+1;
+            if(nums[mid] < target) lo = mid+1;
             
             else hi = mid-1;
             
         }
         
         return -1;
+        
     }
 }
