@@ -37,7 +37,7 @@ class Solution {
         }
         
         
-        return lo;  // thus we can return either lo or hi
+        return lo;  // we can return either lo or hi as they are equal to each other
         
     }
 }
