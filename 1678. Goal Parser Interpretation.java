@@ -1,24 +1,28 @@
 class Solution {
     public String interpret(String command) {
         
-        StringBuilder sblder = new StringBuilder();
+        StringBuilder sblder = new StringBuilder(command.length());
         
-        if(command.charAt(0) == 'G') sblder.append("G");
-        
-        for(int i=1; i<command.length(); i++){
+        for(int i=0; i<command.length(); i++){
             
-            if(command.charAt(i) == 'G'){ 
-                sblder.append("G");
+            if(command.charAt(i) == 'G') sblder.append("G");
+            
+            if(command.charAt(i) == '('){
+                
+                if(command.charAt(i+1) == ')'){
+                    sblder.append("o");
+                    i++;
+                }
+                
+                else{
+                    sblder.append("al");
+                    i+=3;
+                }
             }
-            else if(command.charAt(i-1) == '(' && command.charAt(i) == ')'){                                                                  sblder.append("o");
-            }                                                          
             
-            else if(command.charAt(i-1)=='(' && command.charAt(i) == 'a'){
-                sblder.append("al");
-            } 
         }
-               
-        return String.valueOf(sblder);
+        
+        return sblder.toString();
         
     }
 }
