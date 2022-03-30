@@ -3,21 +3,19 @@ class Solution {
 
         StringBuilder sblder = new StringBuilder();
 
+        char[] str = s.toCharArray();
+
         for (int i = 0; i < s.length(); i++) {
-            if (i + 2 < s.length() && s.charAt(i + 2) == '#') {
-                String n = s.charAt(i) + "" + s.charAt(i + 1);
-                int k = 97 + Integer.parseInt(n) - 1;
-                sblder.append((char) k);
+            if (i + 2 < s.length() && str[i + 2] == '#') {
+                int n = (str[i] - '0') * 10 + (str[i + 1] - '0'); // '9' - '0' = 9 (according to ASCII)
+                sblder.append((char) (97 + n - 1));
                 i += 2;
-            } else if (s.charAt(i) != '#') {
-                String c = "" + s.charAt(i);
-                int n = 97 + Integer.parseInt(c) - 1;
-                sblder.append((char) n);
             }
 
+            else
+                sblder.append((char) (97 + (str[i] - '0' - 1)));
         }
 
         return sblder.toString();
-
     }
 }
