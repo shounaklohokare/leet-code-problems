@@ -13,7 +13,7 @@ class Solution {
             if (nums[correctIndex] < 0) {
                 // if it is already negative then that number is occuring second time thence add
                 // it to the out
-                out.add(Math.abs(correctIndex + 1));
+                out.add(correctIndex + 1);
             }
 
             nums[correctIndex] = -nums[correctIndex]; // then make the number at correct index position negative
