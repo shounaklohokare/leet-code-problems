@@ -1,22 +1,27 @@
 class Solution {
     public int arrangeCoins(int n) {
         
-        long start = 0;
-        long end = n;
+        int lo = 0;
+        int hi = n;
         
-        
-        while(start<=end){
+        while(lo <= hi){
             
-            long mid = start + (end-start) / 2;
+            int mid = lo + (hi-lo) / 2;
             
+            if((mid) * (mid+1)/2) <= n){
+                // if mid * (mid+1) / 2 is less than or equal to n 
+                // then assign lo to mid +1
+                lo = mid+1;
+            }
+            else{
+                // assign hi to mid-1
+                hi = mid-1;
+            }
             
-            if((mid * (mid+1) / 2)<=n) start = mid+1;
-            
-            else end = mid-1;
-        
         }
         
-        return (int)end;
+        return hi;   // at the point where lo is no longer less than or equal to hi
+        // at that time where the number is hi is pointing is the answer
         
     }
 }
